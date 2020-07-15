@@ -1,0 +1,19 @@
+﻿@page "/myorders"
+
+@inject HttpClient HttpClient
+
+
+
+<div class="main">
+    My orders will go here
+</div>
+
+
+@code {
+    IEnumerable<OrderWithStatus> ordersWithStatus;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        ordersWithStatus = await HttpClient.GetFromJsonAsync<List<OrderWithStatus>>("orders");
+    }
+}
